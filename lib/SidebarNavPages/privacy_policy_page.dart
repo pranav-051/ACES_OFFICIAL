@@ -1,3 +1,4 @@
+import 'package:aces/components/text.dart';
 import 'package:flutter/material.dart';
 
 class SideNavPage6 extends StatelessWidget {
@@ -7,9 +8,11 @@ class SideNavPage6 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Privacy Policy'),
-        centerTitle: true,
-        elevation: 0,
+        title: const CustomText(
+          text: 'Privacy Policy',
+          fontSize: 18.0,
+          fontWeight: FontWeight.w500,
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

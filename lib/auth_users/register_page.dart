@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:aces/auth_users/auth_services/authServicesFile.dart';
 import 'package:aces/auth_users/loginPage.dart';
-import 'package:aces/components/button.dart';
-import 'package:flutter/material.dart';
+import 'package:aces/components/custom_button.dart';
 import 'package:aces/components/textField.dart';
 import 'package:aces/components/passwordField.dart';
 import 'package:aces/constants/colors.dart';
@@ -14,11 +14,14 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-  TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController crnController = TextEditingController();
+  final TextEditingController departmentController = TextEditingController();
+  final TextEditingController collegeController = TextEditingController();
+
   bool isPasswordHidden = true;
   String? errorMessage;
   String selectedRole = "User"; // Default selected role for dropdown
@@ -27,12 +30,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final AuthService _authService = AuthService(); // Instance for auth service
 
   void _signup() async {
-    // Signup function for handling user registration
-    setState(() {
-      isLoading = true;
-    });
+    setState(() => isLoading = true);
 
-    // Call signup method from authService with user inputs
     String? result = await _authService.register(
       name: nameController.text,
       email: emailController.text,
@@ -40,28 +39,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
       role: selectedRole,
     );
 
-    setState(() {
-      isLoading = false;
-    });
+    setState(() => isLoading = false);
 
     if (result == null) {
-      // Signup successful: navigate to loginScreen with success message
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("SignUp Successful! Login Now!!"),
-        ),
+        const SnackBar(content: Text("SignUp Successful! Login Now!!")),
       );
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
-        ),
+        MaterialPageRoute(builder: (_) => const LoginScreen()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("SignUp Failed! Register Again!! $result"),
-        ),
+        SnackBar(content: Text("SignUp Failed! Register Again!! $result")),
       );
     }
   }
@@ -69,72 +59,60 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: ListView(
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Logo/Image at the top
-              Center(
-                child: Image.asset(
-                  "assets/acesLogo1.png",
-                  width: 150,
-                  height: 150,
-                ),
-              ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
+              Image.asset("assets/acesLogo1.png", width: 150, height: 150),
+              const SizedBox(height: 10),
 
-              // Name input field
               CustomTextField(
                 controller: nameController,
                 hintText: "Enter your full name",
                 labelText: "Full Name*",
                 icon: Icons.person,
               ),
-
               const SizedBox(height: 20),
+
+              // Email input field
               CustomTextField(
                 controller: emailController,
                 hintText: "Enter your email",
-                labelText: "Email",
+                labelText: "Email*",
                 icon: Icons.email,
               ),
-
-              // Email input field
               const SizedBox(height: 20),
 
-
+              // CRN input field
               CustomTextField(
-                controller: TextEditingController(),
+                controller: crnController,
                 hintText: "Enter your CRN",
                 labelText: "CRN",
                 icon: Icons.perm_identity_rounded,
               ),
               const SizedBox(height: 20),
 
+              // Department input field
               CustomTextField(
-                controller: TextEditingController(),
+                controller: departmentController,
                 hintText: "Enter your department",
                 labelText: "Department",
                 icon: Icons.local_fire_department,
               ),
               const SizedBox(height: 20),
+
+              // College input field
               CustomTextField(
-                controller: TextEditingController(),
+                controller: collegeController,
                 hintText: "Enter your college name",
                 labelText: "College Name",
-                icon: Icons.email,
+                icon: Icons.school,
               ),
               const SizedBox(height: 20),
 
-              CustomPasswordField(
-                controller: passwordController,
-                hintText: "Enter your password",
-                labelText: "Password*",
-                icon: Icons.lock,
-              ),
-
-              const SizedBox(height: 20),
               // Password input field
               CustomPasswordField(
                 controller: passwordController,
@@ -144,24 +122,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 20),
 
+              // Confirm Password input field
+              CustomPasswordField(
+                controller: confirmPasswordController,
+                hintText: "Confirm your password",
+                labelText: "Confirm Password*",
+                icon: Icons.lock,
+              ),
+              const SizedBox(height: 20),
+
               // Dropdown for Role selection
               DropdownButtonFormField<String>(
                 value: selectedRole,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Role*",
-                  labelStyle: TextStyle(color: Colors.black), // Label text color
+                  labelStyle: const TextStyle(color: Colors.black),
                   hintText: "Select your role",
-                  hintStyle: TextStyle(color: AppColors.gray), // Hint text color
+                  hintStyle: const TextStyle(color: AppColors.gray),
                   filled: true,
-                  fillColor: AppColors.lightGray, // Background color
+                  fillColor: AppColors.lightGray,
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black), // Border color
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.black),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black), // Enabled border color
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.black),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black), // Focused border color
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(color: Colors.black),
                   ),
                 ),
                 items: ["Admin", "User"].map((role) {
@@ -169,32 +159,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     value: role,
                     child: Text(
                       role,
-                      style: const TextStyle(color: AppColors.oxfordBlue), // Text color inside dropdown
+                      style: const TextStyle(color: AppColors.oxfordBlue),
                     ),
                   );
                 }).toList(),
                 onChanged: (String? newValue) {
-                  setState(() {
-                    selectedRole = newValue!;
-                  });
+                  setState(() => selectedRole = newValue!);
                 },
               ),
-
               const SizedBox(height: 30),
 
               // Signup button
               isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : SizedBox(
+                  ? const CircularProgressIndicator()
+                  : CustomButton(
+                onPressed: _signup,
+                text: "Register Now",
                 width: double.infinity,
-                child: CustomButton(
-                  onPressed: _signup, // Pass the login function
-                  text: "Register Now", // Button text
-                ),
+                textColor: Colors.white,
+                backgroundColor: AppColors.scarletRed,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
 
-              // Already have an account? Register here
+              // Already have an account? Login here
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -206,23 +193,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => const LoginScreen(),
-                        ),
+                        MaterialPageRoute(builder: (_) => const LoginScreen()),
                       );
                     },
-                    child: const Text(
+                    child: Text(
                       "Login here",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.oxfordBlue,
+                        color: AppColors.scarletRed,
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 50,),
+              const SizedBox(height: 100),
             ],
           ),
         ),

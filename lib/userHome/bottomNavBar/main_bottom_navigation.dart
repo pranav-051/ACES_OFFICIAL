@@ -1,7 +1,7 @@
-import 'package:aces/userHome/bottomNavBar/page1.dart';
-import 'package:aces/userHome/bottomNavBar/Page2.dart';
-import 'package:aces/userHome/bottomNavBar/Page3.dart';
-import 'package:aces/userHome/bottomNavBar/Page4.dart';
+import 'package:aces/userHome/bottomNavBar/home_page.dart';
+import 'package:aces/userHome/bottomNavBar/techAndNonTechEvents.dart';
+import 'package:aces/userHome/bottomNavBar/leaderboard.dart';
+import 'package:aces/userHome/bottomNavBar/aboutAces.dart';
 import 'package:flutter/material.dart';
 import 'package:aces/constants/colors.dart';
 import 'package:image/image.dart';
@@ -26,12 +26,12 @@ class _mainBottomNav extends State<mainBottomNav> {
   @override
   Widget build(BuildContext context) {
 
-    const List<Widget> pages = <Widget>
+    List<Widget> pages = <Widget>
     [
-      Page1(title: "Page1",),
-      Page2(title: "Page2",),
-      Page3(title: "Page3",),
-      Page4(title: "Page4",),
+      const Page1(title: "Page1",),
+      const Page2(title: "Page2",),
+      Leaderboard(title: "Page3",),
+      const Page4(title: "Page4",),
     ];
 
     return Scaffold(

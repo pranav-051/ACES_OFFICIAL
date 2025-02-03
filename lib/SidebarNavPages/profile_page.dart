@@ -1,4 +1,7 @@
 import 'dart:io';
+import 'package:aces/components/text.dart';
+import 'package:aces/constants/colors.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,7 +9,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UserProfilePage extends StatefulWidget {
-  const UserProfilePage({Key? key}) : super(key: key);
+  const UserProfilePage({super.key});
 
   @override
   _UserProfilePageState createState() => _UserProfilePageState();
@@ -38,7 +41,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
           return userDoc.data() as Map<String, dynamic>;
         }
       } catch (e) {
-        print("Error loading user data: $e");
+        if (kDebugMode) {
+          print("Error loading user data: $e");
+        }
       }
     }
     return {
@@ -75,7 +80,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   });
                   Navigator.pop(context);
                 } catch (e) {
-                  print("Error updating name: $e");
                 }
               },
               child: const Text("Save"),
@@ -108,7 +112,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
           userDataFuture = _loadUserData();
         });
       } catch (e) {
-        print("Error uploading profile picture: $e");
+        if (kDebugMode) {
+          print("Error uploading profile picture: $e");
+        }
       }
     }
   }
@@ -116,15 +122,14 @@ class _UserProfilePageState extends State<UserProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          "Profile",
-          style: TextStyle(color: Colors.black),
+        title:  const CustomText(
+          text: 'Profile Page',
+          fontSize: 18.0,
+          fontWeight: FontWeight.w500,
         ),
-        backgroundColor: Colors.white,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: FutureBuilder<Map<String, dynamic>>(
         future: userDataFuture,

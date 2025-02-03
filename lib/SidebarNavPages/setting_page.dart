@@ -1,6 +1,9 @@
+import 'package:aces/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:aces/settings_manager.dart';
+
+import '../components/text.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key, required Null Function(dynamic ThemeMode) onThemeChanged});
@@ -10,7 +13,19 @@ class SettingsPage extends StatelessWidget {
     final settings = Provider.of<SettingsManager>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
+      backgroundColor: AppColors.scarletRed,
+      appBar: AppBar(
+        iconTheme: const IconThemeData( size: 30),
+        title: const Row(
+          children: [
+            CustomText(
+              text: 'Settings',
+              fontSize: 18.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ],
+        ),
+      ),
       body: ListView(
         children: [
           ListTile(
