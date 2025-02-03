@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "197036053807",
+    "project_id": "aces-7739e",
+    "storage_bucket": "aces-7739e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:197036053807:android:490a7d2d86d5c882f9bdda",
+        "android_client_info": {
+          "package_name": "com.example.aces"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYXzRqoOApoQfwndarHcxBhvtngfUgDRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
