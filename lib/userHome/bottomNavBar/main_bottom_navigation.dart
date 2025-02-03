@@ -1,14 +1,13 @@
 import 'package:aces/userHome/bottomNavBar/home_page.dart';
-import 'package:aces/userHome/bottomNavBar/techAndNonTechEvents.dart';
+import 'package:aces/userHome/bottomNavBar/tech_nontech_events.dart';
 import 'package:aces/userHome/bottomNavBar/leaderboard.dart';
 import 'package:aces/userHome/bottomNavBar/aboutAces.dart';
 import 'package:flutter/material.dart';
 import 'package:aces/constants/colors.dart';
-import 'package:image/image.dart';
 
 
 class mainBottomNav extends StatefulWidget {
-  const mainBottomNav({key, required this.title});
+  const mainBottomNav({super.key, required this.title});
   final String title;
   @override
   State<mainBottomNav> createState() => _mainBottomNav();
@@ -29,8 +28,8 @@ class _mainBottomNav extends State<mainBottomNav> {
     List<Widget> pages = <Widget>
     [
       const Page1(title: "Page1",),
-      const Page2(title: "Page2",),
-      Leaderboard(title: "Page3",),
+      Page2(title: "Page2",),
+      const Leaderboard(title: "Page3",),
       const Page4(title: "Page4",),
     ];
 

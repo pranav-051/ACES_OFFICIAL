@@ -1,10 +1,10 @@
-import 'package:aces/components/button.dart';
+import 'package:aces/components/custom_button.dart';
 import 'package:aces/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import '../../SidebarNavPages/mainNavDrawer.dart';
+import '../../SidebarNavPages/main_left_panel.dart';
 import '../../components/StaffProfileCard.dart';
 import '../../components/text.dart';
 
@@ -18,9 +18,7 @@ class Page4 extends StatefulWidget {
 class _Page4 extends State<Page4> {
   bool vis = false;
   final String videoUrl = 'https://www.youtube.com/watch?v=tbyuHRS17HQ';
-  // TO control the youtube video functionality
   final _controller = YoutubePlayerController(initialVideoId: 'tbyuHRS17HQ');
-
 
   @override
   void initState() {
@@ -38,14 +36,13 @@ class _Page4 extends State<Page4> {
     return Scaffold(
       drawer: const NavDrawer(),
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black, size: 30),
+        iconTheme: const IconThemeData(color: Colors.white, size: 30),
         title: const Row(
           children: [
             CustomText(
               text: 'About ACES',
               fontSize: 18.0,
-              fontWeight: FontWeight.w500,
-              color: Colors.black,
+              fontWeight: FontWeight.w500
             ),
           ],
         ),
@@ -143,9 +140,7 @@ class _Page4 extends State<Page4> {
               ),
               const CustomText(
                 text: 'Brief about committee ACES',
-                fontSize: 18.0,
                 fontWeight: FontWeight.w500,
-                color: Colors.black,
               ),
             ],
           ),
@@ -156,22 +151,14 @@ class _Page4 extends State<Page4> {
               children: [
                 Text(
                   textAlign: TextAlign.justify,
-                  "\u00A0 \u00A0 \u00A0 ACES focuses on leveling up the competency levels for their undergraduates by providing them a platform to recognize their skill set deep insights about computational systems and related disciplines so that they can build their brand in the highly competitive field of Computer Engineering.",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
+                  "\u00A0 \u00A0 \u00A0 ACES focuses on leveling up the competency levels for their undergraduates by providing them a platform to recognize their skill set deep insights about computational systems and related disciplines so that they can build their brand in the highly competitive field of Computer Engineering."
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
                   textAlign: TextAlign.justify,
-                  "\u00A0 \u00A0 \u00A0  Our mission is to work with passion towards the intellectual and cognitive growth of students, inculcating an environment of innovation, creativity, instilling the values of sharing, hard work, loyalty and respect towards knowledge and the society and evolve to be engaged community leaders.",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
+                  "\u00A0 \u00A0 \u00A0  Our mission is to work with passion towards the intellectual and cognitive growth of students, inculcating an environment of innovation, creativity, instilling the values of sharing, hard work, loyalty and respect towards knowledge and the society and evolve to be engaged community leaders."
                 ),
               ],
             ),
@@ -188,9 +175,7 @@ class _Page4 extends State<Page4> {
               CustomText(
                 textAlign: TextAlign.center,
                 text: "All teams of ACES",
-                fontSize: 18.0,
                 fontWeight: FontWeight.w500,
-                color: Colors.black,
               ),
               SizedBox(
                 height: 15,
@@ -207,7 +192,7 @@ class _Page4 extends State<Page4> {
             height: 50,
             backgroundColor: AppColors.lightGray2,
             textColor: AppColors.oxfordBlue,
-              borderColor: AppColors.oxfordBlue,borderWidth: 0.4
+              borderColor: AppColors.scarletColor,borderWidth: 0.4
           ),
           const SizedBox(
             height: 5,
@@ -217,7 +202,7 @@ class _Page4 extends State<Page4> {
               text: "Web Team ",
               width: 340,
               backgroundColor: AppColors.lightGray2,
-              textColor: AppColors.oxfordBlue, borderColor: AppColors.oxfordBlue,borderWidth: 0.4),
+              textColor: AppColors.oxfordBlue, borderColor: AppColors.scarletColor,borderWidth: 0.4),
           const SizedBox(
             height: 5,
           ),
@@ -226,7 +211,7 @@ class _Page4 extends State<Page4> {
               text: "Event Team ",
               width: 340,
               backgroundColor: AppColors.lightGray2,
-              textColor: AppColors.oxfordBlue, borderColor: AppColors.oxfordBlue,borderWidth: 0.4),
+              textColor: AppColors.oxfordBlue, borderColor: AppColors.scarletColor,borderWidth: 0.4),
           const SizedBox(
             height: 5,
           ),
@@ -235,7 +220,7 @@ class _Page4 extends State<Page4> {
               text: "Editorial team",
               width: 340,
               backgroundColor: AppColors.lightGray2,
-              textColor: AppColors.oxfordBlue, borderColor: AppColors.oxfordBlue,borderWidth: 0.4),
+              textColor: AppColors.oxfordBlue, borderColor: AppColors.scarletColor,borderWidth: 0.4),
           const SizedBox(
             height: 5,
           ),
@@ -244,7 +229,7 @@ class _Page4 extends State<Page4> {
               text: "Design and Production team",
               width: 340,
               backgroundColor: AppColors.lightGray2,
-              textColor: AppColors.oxfordBlue, borderColor: AppColors.oxfordBlue,borderWidth: 0.4),
+              textColor: AppColors.oxfordBlue, borderColor: AppColors.scarletColor,borderWidth: 0.4),
           const SizedBox(
             height: 5,
           ),
@@ -253,7 +238,7 @@ class _Page4 extends State<Page4> {
               text: "Media team",
               width: 340,
               backgroundColor: AppColors.lightGray2,
-              textColor: AppColors.oxfordBlue, borderColor: AppColors.oxfordBlue,borderWidth: 0.4,),
+              textColor: AppColors.oxfordBlue, borderColor: AppColors.scarletColor,borderWidth: 0.4,),
           const SizedBox(
             height: 5,
           ),
@@ -262,7 +247,7 @@ class _Page4 extends State<Page4> {
               text: "Treasury team",
               width: 340,
               backgroundColor: AppColors.lightGray2,
-              textColor: AppColors.oxfordBlue, borderColor: AppColors.oxfordBlue,borderWidth: 0.4),
+              textColor: AppColors.oxfordBlue, borderColor: AppColors.scarletColor,borderWidth: 0.4),
           const SizedBox(
             height: 20,
           ),
@@ -275,9 +260,7 @@ class _Page4 extends State<Page4> {
               CustomText(
                 textAlign: TextAlign.start,
                 text: 'Some glimps',
-                fontSize: 18.0,
                 fontWeight: FontWeight.w500,
-                color: Colors.black,
               ),
               SizedBox(
                 height: 10,
@@ -303,9 +286,7 @@ class _Page4 extends State<Page4> {
               CustomText(
                 textAlign: TextAlign.start,
                 text: 'Vision, Mission & Objectives',
-                fontSize: 18.0,
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
+                fontWeight: FontWeight.w500
               ),
               SizedBox(
                 height: 10,
@@ -336,9 +317,7 @@ class _Page4 extends State<Page4> {
                     const Text(
                       "ACES: Vision",
                       style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 17,
-                          color: Colors.blueGrey),
+                          fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(
                       width: 250,
@@ -371,7 +350,6 @@ class _Page4 extends State<Page4> {
                       "     ACES: Mission",
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 17,
                           color: Colors.blueGrey),
                     ),
                     const SizedBox(
@@ -404,7 +382,6 @@ class _Page4 extends State<Page4> {
                       "ACES: Objectives ",
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 17,
                           color: Colors.blueGrey),
                     ),
                     const SizedBox(
@@ -452,9 +429,7 @@ class _Page4 extends State<Page4> {
               CustomText(
                 textAlign: TextAlign.start,
                 text: "Staff Coordinators",
-                fontSize: 18.0,
                 fontWeight: FontWeight.w500,
-                color: Colors.black,
               ),
               SizedBox(
                 height: 10,
@@ -496,7 +471,7 @@ class _Page4 extends State<Page4> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Contact Us",
+                  "Contact Us-",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -513,10 +488,10 @@ class _Page4 extends State<Page4> {
                         launchUrl(Uri.parse('mailto:email@pvgcoet.ac.in'));
                       },
                       child: const Text(
-                        "Email: email@pvgcoet.ac.in",
+                        "Email: acescomppvg@gmail.com",
                         style: TextStyle(
-                          color: Colors.blueAccent,
-                          fontSize: 16,
+                          color: Colors.white,
+                          fontSize: 18,
                           decoration: TextDecoration.underline,
                         ),
                       ),
@@ -526,7 +501,7 @@ class _Page4 extends State<Page4> {
                       "Phone: 1234567890",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: 18,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -539,8 +514,8 @@ class _Page4 extends State<Page4> {
                       child: const Text(
                         "Instagram: @acespvgcoet",
                         style: TextStyle(
-                          color: Colors.blueAccent,
-                          fontSize: 16,
+                          color: Colors.white,
+                          fontSize: 18,
                           decoration: TextDecoration.underline,
                         ),
                       ),

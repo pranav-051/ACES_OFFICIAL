@@ -1,4 +1,4 @@
-import 'package:aces/userHome/bottomNavBar/mainBottomNav.dart';
+import 'package:aces/userHome/bottomNavBar/main_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../components/text.dart';
@@ -22,6 +22,8 @@ class NewsletterScreen extends StatelessWidget {
     // Add more newsletters here
   ];
 
+  NewsletterScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +43,6 @@ class NewsletterScreen extends StatelessWidget {
             text: "Newsletter",
             fontSize: 18.0,
             fontWeight: FontWeight.w500,
-            color: Colors.black,
           )),
       body: ListView.builder(
         itemCount: newsletters.length,
@@ -74,7 +75,7 @@ class NewsletterCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image(
@@ -112,7 +113,7 @@ class NewsletterCard extends StatelessWidget {
                           color: Colors.grey,
                         ),
                       ),
-                      SizedBox(height: 10,)
+                      const SizedBox(height: 10,)
                     ],
                   ),
                 ),

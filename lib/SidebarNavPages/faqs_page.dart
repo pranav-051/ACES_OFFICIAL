@@ -13,7 +13,7 @@ class _SideNavPage5 extends State<SideNavPage5> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar:AppBar(
-          iconTheme: const IconThemeData(size: 30),
+          iconTheme: const IconThemeData(color: Colors.white),
           title: const Row(
             children: [
               CustomText(

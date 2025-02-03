@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:aces/constants/AppImages.dart';
 import 'package:flutter/material.dart';
 import 'package:aces/welcome_page.dart';
 
@@ -28,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
         width: double.infinity, // Takes full width without MediaQuery
         color: Colors.black,
         alignment: Alignment.center,
-        child: Image.asset(splashImage, width: 200, fit: BoxFit.fill),
+        child: Image.asset(AppImages.splashImage, width: 200, fit: BoxFit.fill),
       ),
     );
   }

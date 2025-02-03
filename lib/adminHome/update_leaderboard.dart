@@ -4,15 +4,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../constants/colors.dart';
 
-class uploadLeaderboard extends StatefulWidget {
-  const uploadLeaderboard({super.key, required this.title});
+class upload_leaderboard extends StatefulWidget {
+  const upload_leaderboard({super.key, required this.title});
   final String title;
 
   @override
-  State<uploadLeaderboard> createState() => _uploadLeaderboard();
+  State<upload_leaderboard> createState() => _upload_leaderboard();
 }
 
-class _uploadLeaderboard extends State<uploadLeaderboard> {
+class _upload_leaderboard extends State<upload_leaderboard> {
   TextEditingController eventnameController = TextEditingController();
   TextEditingController firstnameController = TextEditingController();
   TextEditingController secondnameController = TextEditingController();

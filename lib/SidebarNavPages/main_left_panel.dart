@@ -3,10 +3,10 @@ import 'package:aces/auth_users/auth_services/user_model.dart';
 import 'package:aces/constants/colors.dart';
 import 'package:aces/welcome_page.dart';
 import 'package:flutter/material.dart';
-import '/SidebarNavPages/SideNavPage1.dart';
-import '/SidebarNavPages/SettingsPage.dart';
-import '/SidebarNavPages/SideNavPage5.dart';
-import '/SidebarNavPages/SideNavPage6.dart';
+import '/SidebarNavPages/profile_page.dart';
+import '/SidebarNavPages/setting_page.dart';
+import '/SidebarNavPages/faqs_page.dart';
+import '/SidebarNavPages/privacy_policy_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rating_dialog/rating_dialog.dart';
@@ -29,31 +29,33 @@ class _NavDrawerState extends State<NavDrawer> {
   final _dialog = RatingDialog(
     starSize: 35,
     title: const Text(
-      'ACES',
+      'ACES',textAlign: TextAlign.center,
       style: TextStyle(
-          color: AppColors.oxfordBlue, fontWeight: FontWeight.w500, fontSize: 25),
+          color: AppColors.redColor,
+          fontWeight: FontWeight.w500,
+          fontSize: 25),
     ),
     message: const Text(
-      'Rate us 5* and Support Us',
+      'Rate us 5* and support us ☺️', textAlign: TextAlign.center,
       style: TextStyle(
-          color: AppColors.oxfordBlue, fontWeight: FontWeight.w300, fontSize: 19),
+          color: AppColors.scarletColor,
+          fontWeight: FontWeight.w300,
+          fontSize: 18),
     ),
     image: Image.asset(
       "assets/acesLogo1.png",
-      height: 90,
       width: 90,
+      height: 90,
       fit: BoxFit.contain,
     ),
     submitButtonText: 'Submit',
-    onCancelled: () => print('cancelled'),
     onSubmitted: (response) {
-      print('rating: ${response.rating}, comment: ${response.comment}');
       if (response.rating < 3.0) {
         // Handle low ratings
       } else {
         StoreRedirect.redirect(
-            androidAppId: 'com.example.wegpaiens',
-            iOSAppId: 'com.example.wegpaiens');
+            androidAppId: 'com.example.aces2',
+            iOSAppId: 'com.example.aces2');
       }
     },
   );
@@ -74,7 +76,8 @@ class _NavDrawerState extends State<NavDrawer> {
 
         if (userDoc.exists) {
           setState(() {
-            loggedInUser = UserModel.fromMap(userDoc.data() as Map<String, dynamic>);
+            loggedInUser =
+                UserModel.fromMap(userDoc.data() as Map<String, dynamic>);
           });
         }
       } catch (e) {
@@ -96,13 +99,13 @@ class _NavDrawerState extends State<NavDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: 280,
+      width: 260,
       elevation: 5,
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
           UserAccountsDrawerHeader(
-            decoration: const BoxDecoration(color: AppColors.oxfordBlue),
+            decoration: const BoxDecoration(color: AppColors.scarletColor),
             currentAccountPicture: ClipRRect(
               borderRadius: BorderRadius.circular(25),
               child: Image.asset(
@@ -144,7 +147,8 @@ class _NavDrawerState extends State<NavDrawer> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => SettingsPage(onThemeChanged: (ThemeMode) {})),
+                  builder: (context) =>
+                      SettingsPage(onThemeChanged: (ThemeMode) {})),
             ),
           ),
           _buildListTile(
@@ -160,7 +164,9 @@ class _NavDrawerState extends State<NavDrawer> {
             title: 'Help Center',
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const SideNavPage5(title: 'SideNavPage5')),
+              MaterialPageRoute(
+                  builder: (context) =>
+                      const SideNavPage5(title: 'SideNavPage5')),
             ),
           ),
           _buildListTile(
@@ -184,13 +190,17 @@ class _NavDrawerState extends State<NavDrawer> {
             title: 'Logout',
             onTap: () => logout(context),
           ),
-          const Divider(thickness: 1, height: 5),
+          const Divider(
+            thickness: 0.4,
+            color: AppColors.scarletColor,
+          ),
           const SizedBox(height: 5.0),
           const Padding(
             padding: EdgeInsets.only(left: 16.0),
             child: Text(
               "Version: 1.0.1",
-              style: TextStyle(fontWeight: FontWeight.w300, color: AppColors.oxfordBlue),
+              style: TextStyle(
+                  fontWeight: FontWeight.w300, color: AppColors.oxfordBlue),
             ),
           ),
         ],
@@ -198,10 +208,14 @@ class _NavDrawerState extends State<NavDrawer> {
     );
   }
 
-  Widget _buildListTile({required IconData icon, required String title, required VoidCallback onTap}) {
+  Widget _buildListTile(
+      {required IconData icon,
+      required String title,
+      required VoidCallback onTap}) {
     return ListTile(
-      leading: Icon(icon, color: AppColors.oxfordBlue),
-      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 17)),
+      leading: Icon(icon, color: AppColors.scarletColor),
+      title: Text(title,
+          style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16)),
       onTap: onTap,
     );
   }

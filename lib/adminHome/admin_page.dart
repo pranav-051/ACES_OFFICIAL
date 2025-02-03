@@ -1,19 +1,23 @@
 import 'package:aces/SidebarNavPages/main_left_panel.dart';
+import 'package:aces/adminHome/update_events.dart';
 import 'package:aces/adminHome/update_leaderboard.dart';
+import 'package:aces/components/button_multiline.dart';
 import 'package:aces/components/custom_button.dart';
+import 'package:aces/constants/AppImages.dart';
 import 'package:aces/constants/colors.dart';
+import 'package:aces/userHome/bottomNavBar/tech_nontech_events.dart';
 import 'package:flutter/material.dart';
 
 import '../components/text.dart';
 
-class adminPage extends StatefulWidget {
-  const adminPage({super.key, required this.title});
+class admin_page extends StatefulWidget {
+  const admin_page({super.key, required this.title});
   final String title;
   @override
-  State<adminPage> createState() => _adminPage();
+  State<admin_page> createState() => _admin_page();
 }
 
-class _adminPage extends State<adminPage> {
+class _admin_page extends State<admin_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,19 +38,33 @@ class _adminPage extends State<adminPage> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              CustomButton(
+              CustomMultilineButton(
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const uploadLeaderboard(title: 'uploadLeaderboard',),
+                      builder: (_) => const upload_leaderboard(title: 'uploadLeaderboard',),
                     ),
                   );
                 },
-                text: "Upload images / videos for past Event Gallery ",
-                width: 320,
-                backgroundColor: Colors.blue,
-                textColor: Colors.white,
+                icon: Image.asset(AppImages.bePart, width: 50,),
+                text1: 'Update', text2: 'Leaderboard',
+              ),
+
+              const SizedBox(height: 15,),
+
+              CustomMultilineButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const ChangeEvent(title: "Tech and non-tech events")
+                    ),
+                  );
+                },
+                icon: Image.asset(AppImages.bePart, width: 50,),
+                text1: "Tech &",
+                text2: "Non-Tech Events",
               ),
             ],
           ),

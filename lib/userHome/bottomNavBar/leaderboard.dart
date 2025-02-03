@@ -1,5 +1,6 @@
 import 'package:aces/SidebarNavPages/main_left_panel.dart';
 import 'package:aces/components/text.dart';
+import 'package:aces/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -18,18 +19,18 @@ class _LeaderboardState extends State<Leaderboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const NavDrawer(),
-        appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.white, size: 30),
-          title: const Row(
-            children: [
-              CustomText(
-                text: 'Leaderboard',
-                fontSize: 18.0,
-                fontWeight: FontWeight.w500,
-              ),
-            ],
-          ),
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white, size: 30),
+        title: const Row(
+          children: [
+            CustomText(
+              text: 'Leaderboard',
+              fontSize: 18.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ],
         ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: StreamBuilder<QuerySnapshot>(
@@ -70,7 +71,8 @@ class _LeaderboardState extends State<Leaderboard> {
               itemCount: leaderboard.length,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               itemBuilder: (context, index) {
-                final eventboard = leaderboard[index].data() as Map<String, dynamic>;
+                final eventboard =
+                    leaderboard[index].data() as Map<String, dynamic>;
                 final timestamp = eventboard['timestamp'] as Timestamp?;
                 final eventDate = timestamp?.toDate();
                 final eventName = eventboard['eventname'] ?? 'Event Name';
@@ -102,10 +104,10 @@ class _LeaderboardState extends State<Leaderboard> {
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.easeInOut,
                     child: Container(
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(15.0),
                       margin: const EdgeInsets.symmetric(vertical: 8),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.lightGray2,
                         borderRadius: BorderRadius.circular(15),
                         boxShadow: [
                           BoxShadow(
@@ -121,7 +123,6 @@ class _LeaderboardState extends State<Leaderboard> {
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-
                             children: [
                               Text(
                                 eventName,
@@ -156,27 +157,32 @@ class _LeaderboardState extends State<Leaderboard> {
                               const SizedBox(width: 5),
                               eventDate != null
                                   ? Text(
-                                eventDate.toLocal().toString().split(' ')[0],
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 12,
-                                ),
-                              )
+                                      eventDate
+                                          .toLocal()
+                                          .toString()
+                                          .split(' ')[0],
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 12,
+                                      ),
+                                    )
                                   : const Text(
-                                'N/A',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 12,
-                                ),
+                                      'N/A',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                              const SizedBox(
+                                width: 85,
                               ),
-                              const SizedBox(width: 85,),
                               Container(
                                 height: 30,
                                 width: 120,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
                                   gradient: const LinearGradient(
-                                    colors: [Colors.blue, Colors.blueAccent],
+                                    colors: [Colors.pink, Colors.orange],
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                   ),
@@ -211,7 +217,7 @@ class _LeaderboardState extends State<Leaderboard> {
                                 const SizedBox(height: 16),
                                 // First Place
                                 _buildWinnerCard(
-                                  icon: 'assets/firstRank.png' ,
+                                  icon: 'assets/firstRank.png',
                                   winnerName: firstPlace,
                                   year: fyear,
                                   branch: fbranch,
@@ -289,10 +295,9 @@ class _LeaderboardState extends State<Leaderboard> {
                 Text(
                   rank,
                   style: const TextStyle(
-                    color: Colors.blue,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500
-                  ),
+                      color: Colors.blue,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(width: 10),
                 Text(
@@ -310,4 +315,3 @@ class _LeaderboardState extends State<Leaderboard> {
     );
   }
 }
-

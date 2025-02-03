@@ -1,6 +1,7 @@
+import 'package:aces/constants/AppImages.dart';
 import 'package:flutter/material.dart';
 import 'package:aces/auth_users/auth_services/authServicesFile.dart';
-import 'package:aces/auth_users/loginPage.dart';
+import 'package:aces/auth_users/login_page.dart';
 import 'package:aces/components/custom_button.dart';
 import 'package:aces/components/textField.dart';
 import 'package:aces/components/passwordField.dart';
@@ -17,7 +18,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   final TextEditingController crnController = TextEditingController();
   final TextEditingController departmentController = TextEditingController();
   final TextEditingController collegeController = TextEditingController();
@@ -66,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
-              Image.asset("assets/acesLogo1.png", width: 150, height: 150),
+              Image.asset(AppImages.acesLogo1, width: 150, height: 150),
               const SizedBox(height: 10),
 
               CustomTextField(
@@ -173,12 +175,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
               isLoading
                   ? const CircularProgressIndicator()
                   : CustomButton(
-                onPressed: _signup,
-                text: "Register Now",
-                width: double.infinity,
-                textColor: Colors.white,
-                backgroundColor: AppColors.scarletRed,
-              ),
+                      onPressed: _signup,
+                      text: "Register Now",
+                      width: double.infinity,
+                      textColor: Colors.white,
+                      backgroundColor: AppColors.scarletRed,
+                    ),
               const SizedBox(height: 20),
 
               // Already have an account? Login here
@@ -196,7 +198,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         MaterialPageRoute(builder: (_) => const LoginScreen()),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       "Login here",
                       style: TextStyle(
                         fontSize: 16,

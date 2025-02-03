@@ -3,11 +3,12 @@ import 'package:aces/auth_users/auth_services/authServicesFile.dart';
 import 'package:aces/auth_users/register_page.dart';
 import 'package:aces/components/custom_button.dart';
 import 'package:aces/constants/colors.dart';
-import 'package:aces/userHome/bottomNavBar/mainBottomNav.dart';
+import 'package:aces/userHome/bottomNavBar/main_bottom_navigation.dart';
 import 'package:aces/components/textField.dart';
 import 'package:aces/components/passwordField.dart';
-import '../adminHome/adminPage.dart';
+import '../adminHome/admin_page.dart';
 import 'package:aces/constants/AppImages.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,8 +24,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool isLoading = false;
 
-  void login() async {
+  Future <void> login() async {
     setState(() => isLoading = true);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('login', true);
 
     String? result = await _authService.login(
       email: emailController.text,
@@ -34,14 +38,18 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() => isLoading = false);
 
     if (result == "Admin") {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (_) => const adminPage(title: 'Admin Pages')),
+        MaterialPageRoute(
+            builder: (_) => const admin_page(title: 'Admin Pages')),
+          (route) => false,
       );
     } else if (result == "User") {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (_) => const mainBottomNav(title: "User Page")),
+        MaterialPageRoute(
+            builder: (_) => const mainBottomNav(title: "User Page")),
+            (route) => false,
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -54,18 +62,16 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
+        child: SizedBox(
           width: 340,
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Logo
-                Image.asset(AppImages.acesLogo1 , height: 180),
+                Image.asset(AppImages.acesLogo1, height: 180),
                 const SizedBox(height: 20),
 
-                // Email Input Field
                 CustomTextField(
                   controller: emailController,
                   hintText: "Enter your email",
@@ -74,7 +80,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // Password Input Field
                 CustomPasswordField(
                   controller: passwordController,
                   hintText: "Enter your password",
@@ -83,16 +88,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 30),
 
-                // Login Button with loading indicator
                 isLoading
                     ? const CircularProgressIndicator()
                     : CustomButton(
-                  onPressed: login,
-                  text: "Login Now",
-                  width: double.infinity,
-                  textColor: Colors.white,
-                  backgroundColor: AppColors.scarletRed,
-                ),
+                        onPressed: login,
+                        text: "Login Now",
+                        width: double.infinity,
+                        textColor: Colors.white,
+                        backgroundColor: AppColors.scarletRed,
+                      ),
                 const SizedBox(height: 20),
 
                 const Text(
@@ -101,8 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // Social Login Buttons
-                Container(
+                SizedBox(
                   height: 50,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -132,7 +135,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // Signup Redirection
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -144,10 +146,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const RegisterScreen()),
+                          MaterialPageRoute(
+                              builder: (_) => const RegisterScreen()),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         "Signup here",
                         style: TextStyle(
                           fontSize: 16,

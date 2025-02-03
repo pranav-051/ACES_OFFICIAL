@@ -13,9 +13,8 @@ class SettingsPage extends StatelessWidget {
     final settings = Provider.of<SettingsManager>(context);
 
     return Scaffold(
-      backgroundColor: AppColors.scarletRed,
       appBar: AppBar(
-        iconTheme: const IconThemeData( size: 30),
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Row(
           children: [
             CustomText(
